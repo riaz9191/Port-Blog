@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-gray-100 text-gray-800 transition-colors duration-300 ease-in-out;
+}
+body {
+  margin: 0;
+  padding: 0;
+  /* overflow: hidden; */
+}
+
+
+/* Apply dark mode styles */
+.dark body {
+  @apply bg-gray-900 text-gray-100;
+}
+
+/* Light Grid Background */
+.bg-light-pattern {
+  /* background-color: #f7fafc; Light background */
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 2px, transparent 1px),
+                    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 2px, transparent 1px);
+  background-size: 20px 20px;
+  animation: moveGrid 8s linear infinite;
+}
+
+/* Dark Grid Background */
+.bg-dark-pattern {
+  /* background-color: #1a202c; Dark background */
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 2px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 2px, transparent 1px);
+  background-size: 20px 20px;
+  animation: moveGrid 8s linear infinite;
+}
+
+/* Grid Animation */
+@keyframes moveGrid {
+  0% {
+    background-position: 0 0, 0 0;
+  }
+  100% {
+    background-position: 40px 40px, -40px -40px;
+  }
+}
