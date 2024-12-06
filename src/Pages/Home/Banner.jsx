@@ -1,128 +1,55 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { motion } from "framer-motion";
+
 
 const Banner = () => {
-  const [state, setState] = useState(false);
-
-
-
-  useEffect(() => {
-    document.onclick = (e) => {
-      const target = e.target;
-      if (!target.closest(".menu-btn")) setState(false);
-    };
-  }, []);
-
   return (
-    <div className="">
-      <header>
-        <nav
-          className={`pb-5 md:text-sm ${
-            state
-              ? "absolute z-20 top-0 inset-x-0 bg-gray-800 rounded-xl mx-2 mt-2 md:mx-0 md:mt-0 md:relative md:bg-transparent"
-              : ""
-          }`}
-        >
-          <div className="gap-x-14 items-center max-w-screen-xl mx-auto px-4 md:flex md:px-8">
-            <div
-              className={`flex-1 items-center mt-8 md:mt-0 md:flex ${
-                state ? "block" : "hidden"
-              } `}
-            ></div>
-          </div>
-        </nav>
-      </header>
-      <section className="relative mt-5">
-        <div className="relative z-10 max-w-screen-xl mx-auto px-4 py-28 lg:py-52 md:px-8">
-          <div className="space-y-5 max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl text-[#efefef] font-extrabold mx-auto md:text-5xl">
-              Find Your Pet on{" "}
-              <span className="bg-gradient-to-r from-[#0DFFFE] via-[#f48d8d] to-[#d38cfa] bg-clip-text text-transparent transition-all duration-500">
-                My Pet
-              </span>{" "}
-            </h2>
-            
-            <form
-              onSubmit={(e) => e.preventDefault()}
-              className="justify-center items-center gap-x-3 sm:flex"
-            >
-              <Link to="/codeExecution">
-                <button className="flex items-center justify-center gap-x-2 py-2.5 px-4 mt-3 w-full text-sm text-white font-medium bg-sky-500 hover:bg-sky-400 active:bg-sky-600 duration-150 rounded-lg sm:mt-0 sm:w-auto">
-                  Get started
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    className="w-5 h-5"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
-              </Link>
-            </form>
-            <div className="flex justify-center items-center gap-x-4 text-gray-400 text-sm">
-              <div className="flex">
-                <svg
-                  className="w-5 h-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" />
-                </svg>
-                <svg
-                  className="w-5 h-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" />
-                </svg>
-                <svg
-                  className="w-5 h-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" />
-                </svg>
-                <svg
-                  className="w-5 h-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" />
-                </svg>
-                <svg
-                  className="w-5 h-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" />
-                </svg>
-              </div>
-              <p>
-                <span className="text-gray-100">5.0</span> by over 200 users
-              </p>
-            </div>
-          </div>
-        </div>
-        <div
-          className="absolute inset-0 m-auto max-w-xs h-[357px] blur-[118px] sm:max-w-md md:max-w-lg"
-          style={{
-            background:
-              "linear-gradient(106.89deg, rgba(192, 152, 252, 0.11) 15.73%, rgba(14, 165, 233, 0.41) 15.74%, rgba(242, 121, 249, 0.26) 56.49%, rgba(79, 70, 229, 0.4) 115.91%)",
-          }}
-        ></div>
-      </section>
-    </div>
-  );
-};
+    <div>
+      <div className="min-h-screen bg-light-pattern dark:bg-dark-pattern text-gray-900 dark:text-gray-100 flex flex-col items-center justify-center px-6 ">
+        {/* Banner */}
+      <motion.div
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="text-center"
+      >
+        <h1 className="text-5xl font-extrabold mb-4">
+          Welcome to <span className="text-indigo-400">Riaz Ahammed's Blog</span>
+        </h1>
+        <p className="text-lg text-gray-600 dark:text-gray-400">
+          Sharing insights, tutorials, and my journey as a web developer.
+        </p>
+      </motion.div>
 
-export default Banner;
+      {/* Content Section */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
+        className="mt-10 max-w-3xl bg-white/5 dark:bg-white/10 backdrop-blur-lg rounded-xl shadow-md p-8"
+      >
+        <p className="text-gray-800 dark:text-gray-200 leading-relaxed">
+          Hi, I’m Riaz, a passionate web developer sharing my knowledge about
+          JavaScript, React, Node.js, and all things coding. On this blog,
+          you’ll find tutorials, tips, and personal stories from my journey in
+          tech. Let’s grow together!
+        </p>
+      </motion.div>
+
+      {/* Call to Action */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
+        className="mt-10"
+      >
+        <button className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 rounded-full shadow-lg text-white font-semibold hover:scale-105 transition transform">
+          Read My Blog
+        </button>
+      </motion.div>
+      </div>
+    </div>
+  )
+}
+
+export default Banner
