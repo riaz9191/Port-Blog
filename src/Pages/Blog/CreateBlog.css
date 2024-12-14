@@ -1,0 +1,32 @@
+/* editorStyles.css */
+.yoopta-mark-bold {
+  font-weight: bold;
+  color: inherit; /* Adapt to the current text color */
+}
+
+.yoopta-mark-italic {
+  font-style: italic;
+  color: inherit;
+}
+
+.yoopta-mark-code {
+  font-family: monospace;
+  background-color: var(--code-bg-color, #f3f4f6); /* Default light mode */
+  padding: 2px 4px;
+  border-radius: 4px;
+  color: inherit;
+}
+
+.dark .yoopta-mark-code {
+  background-color: var(--code-bg-dark-color, #374151); /* Dark mode */
+}
+
+.yoopta-mark-highlight {
+  background-color: var(--highlight-bg-color, #ffe066); /* Light mode */
+  color: #000;
+}
+
+.dark .yoopta-mark-highlight {
+  background-color: var(--highlight-bg-dark-color, #d97706); /* Dark mode */
+  color: #fff;
+}

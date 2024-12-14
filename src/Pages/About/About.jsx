@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { FaTwitter, FaGithub, FaLinkedin } from "react-icons/fa"; // Importing icons
 
 const About = () => {
   const fadeInUp = {
@@ -77,6 +78,33 @@ const About = () => {
           </a>
         </motion.div>
       </motion.div>
+
+      {/* Enhanced Footer Section */}
+      <footer className="bg-gradient-to-r from-indigo-600 to-purple-600 text-gray-200 py-8 mt-12">
+        <div className="container mx-auto text-center">
+          <p className="text-lg mb-2">
+            &copy; {new Date().getFullYear()} Riaz Ahammed. All rights reserved.
+          </p>
+          <p className="text-sm mb-4">
+            Follow me on:
+          </p>
+          <div className="flex justify-center space-x-4 mb-4">
+            <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer" className="text-gray-200 hover:text-white transition">
+              <FaTwitter size={24} />
+            </a>
+            <a href="https://github.com/yourprofile" target="_blank" rel="noopener noreferrer" className="text-gray-200 hover:text-white transition">
+              <FaGithub size={24} />
+            </a>
+            <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" className="text-gray-200 hover:text-white transition">
+              <FaLinkedin size={24} />
+            </a>
+          </div>
+          <p className="text-sm">
+            <a href="/privacy-policy" className="text-gray-200 hover:underline">Privacy Policy</a> | 
+            <a href="/terms-of-service" className="text-gray-200 hover:underline"> Terms of Service</a>
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };

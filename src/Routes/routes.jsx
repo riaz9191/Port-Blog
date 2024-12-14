@@ -4,6 +4,7 @@ import Home from "../Pages/Home/Home";
 import About from "../Pages/About/About";
 import Blog from "../Pages/Blog/Blog";
 import BlogDetails from "../Pages/Blog/BLogDetails";
+import CreateBlog from "../Pages/Blog/CreateBlog";
 
 
 export const router = createBrowserRouter([
@@ -25,9 +26,14 @@ export const router = createBrowserRouter([
         element:<Blog />
       },
       {
-        path:'/blog/:_id',
+        path:'/blog/:id',
         element:<BlogDetails />
       },
+      {
+        path:'/createBlog',
+        element:<CreateBlog />
+      },
+      
       
     ]
   },

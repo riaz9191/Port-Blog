@@ -44,3 +44,14 @@ body {
     background-position: 40px 40px, -40px -40px;
   }
 }
+
+
+:root {
+  --code-bg-color: #f3f4f6;
+  --highlight-bg-color: #ffe066;
+}
+
+.dark {
+  --code-bg-dark-color: #374151;
+  --highlight-bg-dark-color: #d97706;
+}
