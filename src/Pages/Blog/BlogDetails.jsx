@@ -1,5 +1,71 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import YooptaEditor, { createYooptaEditor } from "@yoopta/editor";
+import React, { useEffect, useMemo, useState } from "react";
+import { data, useParams } from "react-router-dom";
+
+// Import individual plugins for various editor features
+import Paragraph from "@yoopta/paragraph";
+import Blockquote from "@yoopta/blockquote";
+import { HeadingOne, HeadingTwo, HeadingThree } from "@yoopta/headings";
+import { NumberedList, BulletedList, TodoList } from "@yoopta/lists";
+import Table from "@yoopta/table";
+import Code from "@yoopta/code";
+import Callout from "@yoopta/callout";
+import File from "@yoopta/file";
+import Accordion from "@yoopta/accordion";
+import Divider from "@yoopta/divider";
+import Embed from "@yoopta/embed";
+import Image from "@yoopta/image";
+import Video from "@yoopta/video";
+import Link from "@yoopta/link";
+import {
+  Bold,
+  Italic,
+  CodeMark,
+  Underline,
+  Strike,
+  Highlight,
+} from "@yoopta/marks";
+import LinkTool, { DefaultLinkToolRender } from "@yoopta/link-tool";
+import ActionMenu, { DefaultActionMenuRender } from "@yoopta/action-menu-list";
+import Toolbar, { DefaultToolbarRender } from "@yoopta/toolbar";
+
+// Define all plugins
+const plugins = [
+  HeadingOne,
+  HeadingTwo,
+  HeadingThree,
+  Paragraph,
+  Blockquote,
+  NumberedList,
+  BulletedList,
+  TodoList,
+  Table,
+  Code,
+  Callout,
+  File,
+  Accordion,
+  Divider,
+  Embed,
+  Image,
+  Video,
+];
+
+// Define all tools outside the component
+const TOOLS = {
+  Toolbar: {
+    tool: Toolbar,
+    render: DefaultToolbarRender,
+  },
+  ActionMenu: {
+    tool: ActionMenu,
+    render: DefaultActionMenuRender,
+  },
+  LinkTool: {
+    tool: LinkTool,
+    render: DefaultLinkToolRender,
+  },
+};
+const MARKS = [Bold, Italic, CodeMark, Underline, Strike, Highlight];
 
 const Spinner = () => (
   <div className="flex items-center justify-center h-screen">
@@ -12,6 +78,7 @@ const BlogDetails = () => {
   const [blog, setBlog] = useState(null); // State to hold the blog data
   const [loading, setLoading] = useState(true); // State for loading status
   const [error, setError] = useState(null); // State for error handling
+  const editor = useMemo(() => createYooptaEditor(), []);
 
   useEffect(() => {
     const fetchBlogDetails = async () => {
@@ -53,54 +120,45 @@ const BlogDetails = () => {
       </div>
     );
   }
-
+  const yooptaValue = blog.details;
   // Render rich-text content
-  const renderDetails = (details) => {
-    // Convert the details object to an array and sort by the `order` property
-    const sortedDetails = Object.values(details).sort(
-      (a, b) => a.meta.order - b.meta.order
-    );
-
-    return sortedDetails.map((item) => (
-      <div
-        key={item.id}
-        className={`text-${item.meta.align} mb-4`}
-      >
-        {item.value.map((block) =>
-          block.children.map((child, index) => (
-            <p key={index} className="leading-relaxed">
-              {child.text}
-            </p>
-          ))
-        )}
-      </div>
-    ));
-  };
 
   // Render blog details if the blog exists
   return (
-    <div className="min-h-screen max-w-4xl mx-auto p-6">
-      <h1 className="text-4xl font-bold mb-4">{blog?.heading}</h1>
-      {blog.coverPhoto && (
-        <img
-          src={blog.coverPhoto}
-          alt="Cover"
-          className="w-full h-auto object-cover rounded-md mb-4"
-        />
-      )}
-      <p className="text-gray-600 italic mb-4">{blog.slug}</p>
+    <div className=" top-0 left-0 w-full h-full flex items-center justify-center bg-black/30 z-100">
+  <div className="min-h-screen max-w-3xl mx-auto p-6 bg-white dark:bg-gray-900 rounded-lg shadow-xl">
+    <h1 className="text-4xl font-bold mb-4">{blog?.heading}</h1>
+    {blog.coverPhoto && (
+      <img
+        src={blog.coverPhoto}
+        alt="Cover"
+        className="w-full h-auto object-cover rounded-md mb-4"
+      />
+    )}
+    <p className="text-gray-600 italic mb-4">{blog.slug}</p>
 
-      <div className="text-gray-800 mt-4 leading-relaxed">
-        {renderDetails(blog.details)}
-      </div>
-
-      <button
-        onClick={() => window.history.back()}
-        className="mt-6 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
-      >
-        Back to Blogs
-      </button>
+    <div className="text-gray-800 mt-4 leading-relaxed dark:text-gray-100">
+      <YooptaEditor
+        editor={editor}
+        plugins={plugins}
+        tools={TOOLS}
+        marks={MARKS}
+        value={yooptaValue} // Ensure value is always valid
+        readOnly
+        style={{ width: "100%" }}
+      />
+      {/* {renderDetails(blog.details)} */}
     </div>
+
+    <button
+      onClick={() => window.history.back()}
+      className="mt-6 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
+    >
+      Back to Blogs
+    </button>
+  </div>
+</div>
+
   );
 };
 
